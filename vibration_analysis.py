@@ -10,9 +10,9 @@ from scipy.fftpack import fft
 from datetime import datetime
 
 def convert_date(date):
-    return float(datetime.strptime(date.decode(), '%Y-%m-%d %H:%M:%S.%f').timestamp())
+    return float(datetime.strptime(date.decode(), '%H:%M:%S.%f').timestamp())
 
-file_path = 'vibration_data+2020-08-15_153757.csv'
+file_path = 'vibration_data_2020-08-15_182212.csv'
 dataset = file_path.split('.')[0]
 
 # Load Data (assumes two column array
@@ -21,6 +21,7 @@ ts, ax, ay, az = np.genfromtxt(file_path,
                                skip_header=1,
                                unpack=True,
                                converters={0: convert_date})
+print(ts)
 
 # Determine variables
 N = np.int(np.prod(ts.shape)) # length of the array

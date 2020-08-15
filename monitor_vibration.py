@@ -7,7 +7,7 @@ if __name__ == '__main__':
 
     timestamp = datetime.now()
     print('Beginning monitoring at {}'.format(timestamp))
-    filename = 'vibration_data+{}.csv'.format(datetime.strftime(timestamp, '%Y-%m-%d_%H%M%S'))
+    filename = 'vibration_data_{}.csv'.format(datetime.strftime(timestamp, '%Y-%m-%d_%H%M%S'))
 
     with open(filename, 'w') as outfile:
         outfile_writer = csv.writer(outfile,
