@@ -16,15 +16,18 @@ if __name__ == '__main__':
                                     quoting=csv.QUOTE_MINIMAL)
         outfile_writer.writerow(['timestamp', 'ax', 'ay', 'az'])
         
+        start_time = datetime.now()
         while 1:
+            current_time = datetime.now()
             try:
                 ax,ay,az,wx,wy,wz = mpu6050_conv() # read and convert mpu6050 data
             except Exception as e:
                 print('Exception encountered, ignoring: {}'.format(e))
                 continue
+            elapsed_time = current_time - start_time
 
             print('accel [g]: x = {}, y = {}, z = {}'.format(ax,ay,az))
-            outfile_writer.writerow([datetime.now(), ax, ay, az])
+            outfile_writer.writerow([elapsed_time, ax, ay, az])
             time.sleep(0.01)
 
 
