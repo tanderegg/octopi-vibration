@@ -1,1 +1,5 @@
 smbus
+matplotlib
+numpy
+scipy
+pandas
