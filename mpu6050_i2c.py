@@ -75,7 +75,7 @@ def mpu6050_conv():
 
     # raw temp bits
 
-    ## t_val = read_raw_bits(TEMP_OUT_H) # uncomment to read temp
+    t_val = read_raw_bits(TEMP_OUT_H) # uncomment to read temp
   
     # raw gyroscope bits
 
@@ -92,9 +92,9 @@ def mpu6050_conv():
     w_y = (gyro_y/(2.0**15.0))*gyro_sens
     w_z = (gyro_z/(2.0**15.0))*gyro_sens
 
-##    temp = ((t_val)/333.87)+21.0 # uncomment and add below in return
+    temp = ((t_val)/333.87)+21.0 # uncomment and add below in return
 
-    return a_x,a_y,a_z,w_x,w_y,w_z
+    return a_x,a_y,a_z,w_x,w_y,w_z,temp
 
 
 def AK8963_start():

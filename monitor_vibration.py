@@ -20,14 +20,14 @@ if __name__ == '__main__':
         while 1:
             current_time = datetime.now()
             try:
-                ax,ay,az,wx,wy,wz = mpu6050_conv() # read and convert mpu6050 data
+                ax,ay,az,wx,wy,wz,temp = mpu6050_conv() # read and convert mpu6050 data
             except Exception as e:
                 print('Exception encountered, ignoring: {}'.format(e))
                 continue
             elapsed_time = current_time - start_time
 
             print('accel [g]: x = {}, y = {}, z = {}'.format(ax,ay,az))
-            outfile_writer.writerow([elapsed_time, ax, ay, az])
+            outfile_writer.writerow([elapsed_time, ax, ay, az, temp])
             time.sleep(0.01)
 
 
