@@ -35,7 +35,7 @@ if __name__ == '__main__':
             outfile_writer.writerow([total_elapsed_time, ax, ay, az, temp])
 
             while 1:
-                sample_elapsed_time = *datetime.now() - current_time).total_seconds()
+                sample_elapsed_time = (datetime.now() - current_time).total_seconds()
                 if sample_elapsed_time >= frame_length:
                     break
 
