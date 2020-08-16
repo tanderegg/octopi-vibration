@@ -9,6 +9,9 @@ if __name__ == '__main__':
     print('Beginning monitoring at {}'.format(timestamp))
     filename = 'vibration_data_{}.csv'.format(datetime.strftime(timestamp, '%Y-%m-%d_%H%M%S'))
 
+    sampling_rate = 50
+    frame_length = 1.0 / sampling_rate
+
     with open(filename, 'w') as outfile:
         outfile_writer = csv.writer(outfile,
                                     delimiter=',',
@@ -17,6 +20,7 @@ if __name__ == '__main__':
         outfile_writer.writerow(['timestamp', 'ax', 'ay', 'az'])
         
         start_time = datetime.now()
+        last_time = start_time
         while 1:
             current_time = datetime.now()
             try:
@@ -24,10 +28,15 @@ if __name__ == '__main__':
             except Exception as e:
                 print('Exception encountered, ignoring: {}'.format(e))
                 continue
-            elapsed_time = current_time - start_time
+            
+            total_elapsed_time = current_time - start_time
 
             print('accel [g]: x = {}, y = {}, z = {}'.format(ax,ay,az))
-            outfile_writer.writerow([elapsed_time, ax, ay, az, temp])
-            time.sleep(0.01)
+            outfile_writer.writerow([total_elapsed_time, ax, ay, az, temp])
+
+            while 1:
+                sample_elapsed_time = datetime.now() - current_time
+                if sample_elapsed_time >= frame_length:
+                    break
 
 
