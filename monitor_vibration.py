@@ -1,7 +1,6 @@
 import csv
-import time
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from mpu6050_i2c import *
 
 if __name__ == '__main__':
@@ -11,7 +10,7 @@ if __name__ == '__main__':
     filename = 'vibration_data_{}.csv'.format(datetime.strftime(timestamp, '%Y-%m-%d_%H%M%S'))
 
     sampling_rate = 50
-    frame_length = time.delta(seconds=1.0) / sampling_rate
+    frame_length = timedelta(seconds=1.0) / sampling_rate
 
     with open(filename, 'w') as outfile:
         outfile_writer = csv.writer(outfile,
